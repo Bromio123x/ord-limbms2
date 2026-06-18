@@ -426,7 +426,7 @@ function fsRInv(alpha, beta, k = 0.5) {
     const x = hInv(s, k);
 
     return Math.log(1 - x) /
-           Math.log(1 - k) + 1;
+           Math.log(1 - k) - 1;
 }
 ```
 
