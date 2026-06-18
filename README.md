@@ -199,10 +199,10 @@ It able to convert any ordinal between 2 symetrical ordinal system
 **We have the conversion to B**
 
 ```
-Conv(a) = gB(hB(h-1A(g-1A(a))*(g-1B(h-1B(X))))
+Conv(a) = gB(hB(h⁻¹A(g⁻¹A(a))*(g⁻¹B(h⁻¹B(X))))
 ```
 
-- for gB,hB,h-1B,g-1B are function implemented for system B, and h-1A,g-1A is implemented for system A
+- for gB,hB,h⁻¹B,g⁻¹B are function implemented for system B, and h⁻¹A,g⁻¹A is implemented for system A
 
 **Requirement : symetric between 2 fs**
 
@@ -233,14 +233,14 @@ for aspect ratio 0<k<1
 
 **Explaination**
 
-1 - (1-k)^n maps n = 1,2,3,4,5,... into g-1(α[0]), g-1(α[1]), g-1(α[2]), g-1(α[3]),...
+1 - (1-k)^n maps n = 1,2,3,4,5,... into g⁻¹(α[0]), g⁻¹(α[1]), g⁻¹(α[2]), g⁻¹(α[3]),...
 
 g([0;α] ; 1 - (1-k)^n) maps n = 1,2,3,4,5,... into α[0], α[1], α[2], α[3],... which is exactly fs(α)
 
 **We also define the reverse of this process**
 
 ```
-α{β} = ln(1-h-1(g-1([0;α];β)))/ln(1-k)
+α{β} = ln(1-h⁻¹(g⁻¹([0;α];β)))/ln(1-k)
 ```
 
 ## Global javascript implement
@@ -372,14 +372,22 @@ function hInv(s, k = 0.5) {
         (1 - k) * hInv(rest, k);
 }
 
-function fsReal(alpha, n, k = 0.5) {
+/********************************************************
+ * Extension of Fundamental sequence to rational
+ ********************************************************/
+
+function fsR(alpha, n, k = 0.5) {
 
     const x = 1 - Math.pow(1 - k, n);
 
     return g(0, alpha, h(x, k));
 }
 
-function fsRealInv(alpha, beta, k = 0.5) {
+/********************************************************
+ * fsR⁻¹
+ ********************************************************/
+
+function fsRInv(alpha, beta, k = 0.5) {
 
     const s = gInv(0, alpha, beta);
 
