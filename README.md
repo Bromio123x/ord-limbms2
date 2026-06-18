@@ -184,7 +184,7 @@ h⁻¹(s) = k + (1 - k) * h⁻¹(t) if s[0] = "1"
 as s = s[0] + t (t is string s without first element)
 ```
 
-## Extends this idea
+## Extend this idea
 
 ### Conversion bettween 2 symetrical ordinal system
 
