@@ -412,7 +412,7 @@ function fsR(alpha, n, k = 0.5) {
 
     const x = 1 - Math.pow(1 - k, n + 1);
 
-    return g(0, alpha, h(x, k));
+    return g(ZERO, alpha, h(x, k));
 }
 
 /********************************************************
