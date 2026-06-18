@@ -233,9 +233,9 @@ for aspect ratio 0<k<1
 
 **Explaination**
 
-- 1 - (1-k)^(n+1) maps n = 0,1,2,3,4,... into g⁻¹(α[0]), g⁻¹(α[1]), g⁻¹(α[2]), g⁻¹(α[3]),...
+- 1 - (1-k)^n maps n = 0,1,2,3,4,... into g⁻¹(α[0]), g⁻¹(α[1]), g⁻¹(α[2]), g⁻¹(α[3]),...
 
-- g([0;α] ; 1 - (1-k)^(n+1)) maps n = 0,1,2,3,4,... into α[0], α[1], α[2], α[3],... which is exactly fs(α)
+- g([0;α] ; 1 - (1-k)^n) maps n = 0,1,2,3,4,... into α[0], α[1], α[2], α[3],... which is exactly fs(α)
 
 **We also define the reverse of this process**
 
@@ -247,7 +247,7 @@ for aspect ratio 0<k<1
 
 - h⁻¹(g⁻¹([0;α];β)) is the position of β inside hierachical space α
 
-- ln(1-h⁻¹(g⁻¹([0;α];β)))/ln(1-k)-1 maps them back into 0,1,2,3,4,...
+- ln(1-h⁻¹(g⁻¹([0;α];β)))/ln(1-k) maps them back into 0,1,2,3,4,...
 
 
 ## Global javascript implement
