@@ -216,7 +216,7 @@ Like w can be represented in many ways
 
 - Such as Y(1,2) has fs of Y(),Y(1),Y(1,1),Y(1,1,1),... in wY-sequence
 
-- or (0)(1) has fs of (0),(0)(0),(0)(0)(0),... in BMS
+- or (0)(1) has fs of "",(0),(0)(0),(0)(0)(0),... in BMS
 
 - Or psi0(psi0(0)) is 0,psi0(0),psi0(0)+psi0(0),psi0(0)+psi0(0)+psi0(0),... BOcf
 
