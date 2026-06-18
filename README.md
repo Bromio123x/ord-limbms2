@@ -55,6 +55,7 @@ For 0 < x < 1:
 - If x < k → `"0" + h(x/k)`
 - If x = k → `""` (empty string)
 - If x > k → `"1" + h((x - k)/(1 - k))`
+
 this works for all k that 0 < k < 1
 These are **symbolic binary strings**, not standard binary expansions.
 
@@ -341,18 +342,14 @@ then for any a belong to A
 
 We have the conversion to B
 
-'''
 Conv(a) = gB(hB(h-1A(g-1A(a))*(g-1B(h-1B(X))))
-'''
 
 for gB,hB,h-1B,g-1B are function implemented for system B, and h-1A,g-1A is implemented for system A
 
 Requirement : symetric between 2 fs
 
-'''
 fsA(k)[n] = fsB(k)[n]
 "fs of 2 equivalent ordinal is equivalent"
-'''
 
 Like w can be represented in many ways
 
