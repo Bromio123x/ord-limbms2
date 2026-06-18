@@ -327,8 +327,42 @@ function hInv(s, k = 0.5) {
 - Fundamental sequences guide interval refinement  
 - The process yields a unique ordinal below α
 
-## After reading
-- Come back to readme.md to know the additional requirement of 3 function that i have listed
+## Extends this idea
+
+## Conversion bettween 2 symetrical ordinal system
+
+It able to convert any ordinal between 2 system
+
+Let two system A and B such that lim(A)<lim(B)
+
+Express lim(A) in B (call X)
+
+then for any a belong to A
+
+We have the conversion to B
+
+---
+Conv(a) = gB(hB(h-1A(g-1A(a))*(g-1B(h-1B(X))))
+---
+
+for gB,hB,h-1B,g-1B are function implemented for system B, and h-1A,g-1A is implemented for system A
+
+Requirement : symetric between 2 fs
+---
+fsA(k)[n] = fsB(k)[n]
+"fs of 2 equivalent ordinal is equivalent"
+---
+
+Like w can be represented in many ways
+
+Such as Y(1,2) has fs of Y(),Y(1),Y(1,1),Y(1,1,1),... in wY-sequence
+
+or (0)(1) has fs of (0),(0)(0),(0)(0)(0),... in BMS
+
+Or psi0(psi0(0)) is 0,psi0(0),psi0(0)+psi0(0),psi0(0)+psi0(0)+psi0(0),... BOcf
+
+But they are fundamentally fs of w which is 0,1,2,3,4,...
+
 
 ## Implement
 - Check ordinal.js for the Implementation of this construction with bound ordinal ω^ω
