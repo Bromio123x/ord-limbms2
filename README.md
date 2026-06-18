@@ -57,6 +57,7 @@ For 0 < x < 1:
 - If x > k → `"1" + h((x - k)/(1 - k))`
 
 this works for all k that 0 < k < 1
+
 These are **symbolic binary strings**, not standard binary expansions.
 
 #### Examples (k = 1/2)
