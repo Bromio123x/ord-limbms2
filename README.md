@@ -258,12 +258,32 @@ for aspect ratio 0<k<1
  ********************************************************/
 
 //This function are ordinal sysrem dependences
+//System for the example : LPrSS
 
-function fs(alpha, n) {}
+function cmp(a, b) {
+	for (let i = 0; i < a.length; i++) {
+		if (i >= b.length) return false;
+		if (a[i] != b[i]) return a[i] < b[i];
+	}
+	return a.length <= b.length;
+}
 
-function isSuccessor(alpha) {}
+function fs(a, n) {
+	let out = [...a];
+	let cutNode = out.pop();
+	let root = out.length - 1;
+	while (out[root] >= cutNode && root > 0) root--;
+	let increment = cutNode - out[root] - 1;
+	let badPart = out.slice(root);
+	for (let i = 1; i < n; i++) {
+		out = out.concat(badPart.map(v => v + increment * i));
+	}
+	return out;
+}
 
-function cmp(a, b) {}
+function isSuccessor(array) {
+	return array.length === 0 || array.at(-1) === 0;
+}
 
 /********************************************************
  * f(alpha,beta)
