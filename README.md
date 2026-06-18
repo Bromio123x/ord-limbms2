@@ -288,6 +288,8 @@ function isSuccessor(array) {
 	return array.length === 0 || array.at(-1) === 0;
 }
 
+let ZERO = [] // 0 = [] in LPrSS
+
 /********************************************************
  * f(alpha,beta)
  ********************************************************/
@@ -419,7 +421,7 @@ function fsR(alpha, n, k = 0.5) {
 
 function fsRInv(alpha, beta, k = 0.5) {
 
-    const s = gInv(0, alpha, beta);
+    const s = gInv(ZERO, alpha, beta);
 
     const x = hInv(s, k);
 
