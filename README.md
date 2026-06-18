@@ -240,7 +240,7 @@ for aspect ratio 0<k<1
 **We also define the reverse of this process**
 
 ```
-α{β} = ln(1-h⁻¹(g⁻¹([0;α];β)))/ln(1-k) - 1
+α{β} = ln(1-h⁻¹(g⁻¹([0;α];β)))/ln(1-k)
 ```
 
 **Explaination**
