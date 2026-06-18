@@ -50,12 +50,12 @@ Returns the smallest element in β’s fundamental sequence which is greater tha
 
 ### 2. Encoding Real Numbers into Binary Strings (h(x))
 
-For 0 < x < 1:
-
+```
+For 0 < x < 1: h(x) =
 - If x < k → `"0" + h(x/k)`
 - If x = k → `""` (empty string)
 - If x > k → `"1" + h((x - k)/(1 - k))`
-
+```
 this works for all k that 0 < k < 1
 
 These are **symbolic binary strings**, not standard binary expansions.
@@ -78,6 +78,7 @@ These are **symbolic binary strings**, not standard binary expansions.
 
 we can define g as folow
 
+```
 g([α;β];s)=
 
 g([α;f(α,β)];t) if s[0]="0" 
@@ -89,8 +90,7 @@ f(α,β) if β is a limit and s=""
 α if β is a successor
 
 as s = s[0] + t (t is string s without the first element)
-
----
+```
 
 ## III. Example Evaluation
 
@@ -156,6 +156,7 @@ Bound ordinal : e0
 
 We define the inverse of g as follows:
 
+```
 g⁻¹([α;β];x) =
 
 "0" + g⁻¹([α;f(α,β)];t) if x < f(α,β)
@@ -166,15 +167,14 @@ g⁻¹([α;β];x) =
 
 "" if β is a successor ordinal
 
-
----
+as s = s[0] + t (t is string s without the first element)
+```
 
 ## 2. Function h⁻¹(s)
 
 We define h⁻¹ as follows, for fixed constant k ∈ (0,1)
 
----
-
+```
 h⁻¹("") = k
 
 h⁻¹(s) = k * h⁻¹(t) if s[0] = "0"
@@ -182,8 +182,7 @@ h⁻¹(s) = k * h⁻¹(t) if s[0] = "0"
 h⁻¹(s) = k + (1 - k) * h⁻¹(t) if s[0] = "1"
 
 as s = s[0] + t (t is string s without first element)
-
----
+```
 
 ## Summary intuition
 
@@ -333,7 +332,7 @@ function hInv(s, k = 0.5) {
 
 ## Conversion bettween 2 symetrical ordinal system
 
-It able to convert any ordinal between 2 system
+It able to convert any ordinal between 2 symetrical ordinal system
 
 Let two system A and B such that lim(A)<lim(B)
 
@@ -343,23 +342,19 @@ then for any a belong to A
 
 We have the conversion to B
 
----
-
+```
 Conv(a) = gB(hB(h-1A(g-1A(a))*(g-1B(h-1B(X))))
+```
 
 for gB,hB,h-1B,g-1B are function implemented for system B, and h-1A,g-1A is implemented for system A
 
----
-
 **Requirement : symetric between 2 fs**
 
----
-
+```
 fsA(k)[n] = fsB(k)[n]
+```
 
 "fs of 2 equivalent ordinal is equivalent"
-
----
 
 Like w can be represented in many ways
 
@@ -374,13 +369,15 @@ But they are fundamentally fs of w which is 0,1,2,3,4,...
 
 ## Fundamental sequence α[n] with rational n
 
----
-
+```
 α[n] = g([0;α] ; 1 - (1-k)^n)
-
----
+```
 
 for aspect ratio 0<k<1
+
+**Explaination**
+
+1 - (1-k)^n maps 1,2,3,4,5,... into g-1()
 
 ## Implement
 - Check ordinal.js for the Implementation of this construction with bound ordinal **Lim(BMS)**
