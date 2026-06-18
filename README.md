@@ -334,19 +334,19 @@ function hInv(s, k = 0.5) {
 
 It able to convert any ordinal between 2 symetrical ordinal system
 
-Let two system A and B such that lim(A)<lim(B)
+- Let two system A and B such that lim(A)<lim(B)
 
-Express lim(A) in B (call X)
+- Express lim(A) in B (call X)
 
-then for any a belong to A
+- then for any a belong to A
 
-We have the conversion to B
+**We have the conversion to B**
 
 ```
 Conv(a) = gB(hB(h-1A(g-1A(a))*(g-1B(h-1B(X))))
 ```
 
-for gB,hB,h-1B,g-1B are function implemented for system B, and h-1A,g-1A is implemented for system A
+- for gB,hB,h-1B,g-1B are function implemented for system B, and h-1A,g-1A is implemented for system A
 
 **Requirement : symetric between 2 fs**
 
@@ -358,16 +358,16 @@ fsA(k)[n] = fsB(k)[n]
 
 Like w can be represented in many ways
 
-Such as Y(1,2) has fs of Y(),Y(1),Y(1,1),Y(1,1,1),... in wY-sequence
+- Such as Y(1,2) has fs of Y(),Y(1),Y(1,1),Y(1,1,1),... in wY-sequence
 
-or (0)(1) has fs of (0),(0)(0),(0)(0)(0),... in BMS
+- or (0)(1) has fs of (0),(0)(0),(0)(0)(0),... in BMS
 
-Or psi0(psi0(0)) is 0,psi0(0),psi0(0)+psi0(0),psi0(0)+psi0(0)+psi0(0),... BOcf
+- Or psi0(psi0(0)) is 0,psi0(0),psi0(0)+psi0(0),psi0(0)+psi0(0)+psi0(0),... BOcf
 
-But they are fundamentally fs of w which is 0,1,2,3,4,...
+**But they are fundamentally fs of w which is 0,1,2,3,4,...**
 
 
-## Fundamental sequence α[n] with rational n
+## Fundamental sequence α[n] with rational n and reversal
 
 ```
 α[n] = g([0;α] ; 1 - (1-k)^n)
@@ -377,7 +377,9 @@ for aspect ratio 0<k<1
 
 **Explaination**
 
-1 - (1-k)^n maps 1,2,3,4,5,... into g-1()
+1 - (1-k)^n maps n = 1,2,3,4,5,... into g-1(α[0]), g-1(α[1]), g-1(α[2]), g-1(α[3]),...
+
+g([0;α] ; 1 - (1-k)^n) maps n = 1,2,3,4,5,... into α[0], α[1], α[2], α[3],... which is exactly fs(α)
 
 ## Implement
 - Check ordinal.js for the Implementation of this construction with bound ordinal **Lim(BMS)**
