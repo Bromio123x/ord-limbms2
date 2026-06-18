@@ -223,7 +223,7 @@ Like w can be represented in many ways
 **But they are fundamentally fs of w which is 0,1,2,3,4,...**
 
 
-#3# Fundamental sequence α[n] with rational n and reversal
+### Fundamental sequence α[n] with rational n and reversal
 
 ```
 α[n] = g([0;α] ; 1 - (1-k)^n)
