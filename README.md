@@ -410,7 +410,7 @@ function hInv(s, k = 0.5) {
 
 function fsR(alpha, n, k = 0.5) {
 
-    const x = 1 - Math.pow(1 - k, n + 1);
+    const x = 1 - Math.pow(1 - k, n);
 
     return g(ZERO, alpha, h(x, k));
 }
@@ -426,7 +426,7 @@ function fsRInv(alpha, beta, k = 0.5) {
     const x = hInv(s, k);
 
     return Math.log(1 - x) /
-           Math.log(1 - k) - 1;
+           Math.log(1 - k);
 }
 ```
 
