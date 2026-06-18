@@ -261,11 +261,14 @@ for aspect ratio 0<k<1
 //System for the example : LPrSS
 
 function cmp(a, b) {
-	for (let i = 0; i < a.length; i++) {
-		if (i >= b.length) return false;
-		if (a[i] != b[i]) return a[i] < b[i];
-	}
-	return a.length <= b.length;
+    for (let i = 0; i < Math.min(a.length, b.length); i++) {
+        if (a[i] < b[i]) return -1;
+        if (a[i] > b[i]) return 1;
+    }
+
+    if (a.length < b.length) return -1;
+    if (a.length > b.length) return 1;
+    return 0;
 }
 
 function fs(a, n) {
