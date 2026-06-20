@@ -55,7 +55,8 @@ Returns the smallest element in β’s fundamental sequence which is greater tha
 ### 2. Encoding Real Numbers into Binary Strings (h(x))
 
 ```
-For 0 < x < 1: h(x) =
+For 0 < x < 1: 
+h(x) =
 "0" + h(x/k)               if x < k
 "" (empty string)          if x = k
 "1" + h((x - k)/(1 - k))   if x > k
