@@ -10,7 +10,7 @@
 
 This document introduces a uniform method to encode ordinals using three core functions:
 
-- **FS(α, n)** → Returns the n-th element of the fundamental sequence of ordinal α  
+- **fs(α, n)** → Returns the n-th element of the fundamental sequence of ordinal α  
 - **isSuccessor(α)** → True if α is a successor ordinal, False if limit ordinal  
 - **cmp(α, β)** → Comparison function (-1 if α < β, 0 if equal, 1 if α > β)
 
