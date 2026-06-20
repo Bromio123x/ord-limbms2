@@ -44,7 +44,7 @@ A **fundamental sequence** of a limit ordinal α is a sequence that approaches �
 
 ### 1. Function f(α, β)
 
-```math
+```
 f(α, β) = min { β[n] | β[n] > α }
 ```
 
