@@ -212,9 +212,9 @@ fsA(k)[n] = fsB(k)[n]
 this mean fs of 2 equivalent ordinal is equivalent
 ```
 
-Like fs of ω can be represented in many ways
+Like ω can be represented in many ways
 
-- Such as Y(1,2) has fs of Y(),Y(1),Y(1,1),Y(1,1,1),... in wY-sequence
+- in ωY sequence, ω is Y(1,2) which has fs of Y(),Y(1),Y(1,1),Y(1,1,1),...
 
 - or (0)(1) has fs of "",(0),(0)(0),(0)(0)(0),... in BMS
 
