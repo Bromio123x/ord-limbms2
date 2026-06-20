@@ -11,7 +11,7 @@
 This document introduces a uniform method to encode ordinals using three core functions:
 
 - **FS(α, n)** → Returns the n-th element of the fundamental sequence of ordinal α  
-- **is_successor(α)** → True if α is a successor ordinal, False if limit ordinal  
+- **isSuccessor(α)** → True if α is a successor ordinal, False if limit ordinal  
 - **cmp(α, β)** → Comparison function (-1 if α < β, 0 if equal, 1 if α > β)
 
 **Prerequisite:** Familiarity with ordinal numbers up to Γ₀.
@@ -23,7 +23,7 @@ This document introduces a uniform method to encode ordinals using three core fu
 A **fundamental sequence** of a limit ordinal α is a sequence that approaches α from below.
 
 **Notation:**
-- FS(α): the sequence  
+- fs(α): the fundamental sequence of α
 - α[n]: the n-th element (0-indexed)
 
 **Symbol used:**
@@ -32,10 +32,10 @@ A **fundamental sequence** of a limit ordinal α is a sequence that approaches �
 
 ### Examples
 
-- FS(ε₀) = {1, ω, ω^ω, ω^(ω^ω), ...}  
+- fs(ε₀) = {1, ω, ω^ω, ω^(ω^ω), ...}  
   → ε₀[3] = ω^(ω^ω)
 
-- FS(ω^ω) = {1, ω, ω², ω³, ...}  
+- fs(ω^ω) = {1, ω, ω², ω³, ...}  
   → ω^ω[3] = ω³
 
 ---
