@@ -179,7 +179,7 @@ We define h⁻¹ as follows, for fixed constant k ∈ (0,1)
 ```
 for any binary string s and aspect ratio 0 < k < 1
 h⁻¹(s) = 
-k if                s = ""
+k                   if s = ""
 k*h⁻¹(t)            if s[0] = "0"
 k+(1-k)*h⁻¹(t)      if s[0] = "1"
 
