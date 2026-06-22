@@ -284,8 +284,8 @@ function fs(a, n) {
 	return out;
 }
 
-function isSuccessor(array) {
-	return array.length === 0 || array.at(-1) === 0;
+function isSuccessor(a) {
+	return a.length === 0 || a.at(-1) === 0;
 }
 
 let ZERO = [] // 0 = [] in LPrSS
