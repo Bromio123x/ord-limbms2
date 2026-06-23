@@ -366,21 +366,23 @@ function gInv(alpha, beta, target) {
 }
 
 /********************************************************
- * h(x)
+ * h(x) -- defined as iterative function, but can be defined as a recursive form but dangerous to use because of floating point error
  ********************************************************/
 
 function h(x, k = 0.5) {
+    let result = "";
 
-    if (x === k) {
-        return "";
+    while (x !== k) {
+        if (x < k) {
+            result += "0";
+            x = x / k;
+        } else {
+            result += "1";
+            x = (x - k) / (1 - k);
+        }
     }
 
-    if (x < k) {
-        return "0" + h(x / k, k);
-    }
-
-    return "1" +
-        h((x - k) / (1 - k), k);
+    return result;
 }
 
 /********************************************************
