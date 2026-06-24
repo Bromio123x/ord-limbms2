@@ -233,6 +233,18 @@ Like fs of ω can be represented in many ways
 
 **But they are fundamentally fs of ω which is 0,1,2,3,4,...**
 
+**Proof**
+
+- We already have symetric between 2 fs of 2 system, this mean an ordinal is approached in the same way from the same ordinal in 2 system
+
+- Now we compute the adress of ordinal x in system A, call **s**
+
+- Since symetrical between 2 fs , system B literally has the **Preimage** of A inside it
+
+- Thats mean the adress **s** is preserved in B inside intervals [0;Lim(A)]
+
+- Note that each ordinal inside each different intervals has different adress. The adress tell us how we approach that ordinal in that space.
+
 ---
 ### Fundamental sequence α[n] with rational n and reversal
 
