@@ -46,7 +46,7 @@ A **fundamental sequence** of a limit ordinal α is a sequence that approaches �
 
 ```
 f(α, β) = min { β[n] | β[n] > α }
-the fundamental sequence must me
+the fundamental sequence must be
 - increasing
 - indexed by naturals
 - cofinal below β
