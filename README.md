@@ -629,7 +629,7 @@ class A {
     static h(x, k = 0.5) {
         let result = "";
 
-        while (x !== k && result.length < Maxlen) {
+        while (x !== k && result.length < A.Maxlen) {
             if (x < k) {
                 result += "0";
                 x = x / k;
@@ -733,7 +733,7 @@ class B {
     static h(x, k = 0.5) {
         let result = "";
 
-        while (x !== k && result.length < Maxlen) {
+        while (x !== k && result.length < B.Maxlen) {
             if (x < k) {
                 result += "0";
                 x = x / k;
