@@ -272,6 +272,11 @@ for aspect ratio 0 < k < 1
 //System for the example : LPrSS
 
 function cmp(a, b) {
+    if (a == "Limit" && b == "Limit") return 0;
+    if (a == "Limit" && b != "Limit") return 1;
+    if (a != "Limit" && b == "Limit") return -1;
+
+
     for (let i = 0; i < Math.min(a.length, b.length); i++) {
         if (a[i] < b[i]) return -1;
         if (a[i] > b[i]) return 1;
@@ -283,6 +288,7 @@ function cmp(a, b) {
 }
 
 function fs(a, n) {
+    if (a == "Limit") return [0,n+1]
 	let out = [...a];
 	let cutNode = out.pop();
 	let root = out.length - 1;
@@ -296,7 +302,7 @@ function fs(a, n) {
 }
 
 function isSuccessor(a) {
-	return a.length === 0 || a.at(-1) === 0;
+	return a !== "Limit" && (a.length === 0 || a.at(-1) === 0);
 }
 
 let ZERO = [] // 0 = [] in LPrSS
