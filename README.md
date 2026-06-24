@@ -46,6 +46,10 @@ A **fundamental sequence** of a limit ordinal α is a sequence that approaches �
 
 ```
 f(α, β) = min { β[n] | β[n] > α }
+the fundamental sequence must me
+- increasing
+- indexed by naturals
+- cofinal below β
 ```
 
 Returns the smallest element in β’s fundamental sequence which is greater than α.
@@ -61,7 +65,7 @@ h(x) =
 "" (empty string)          if x = k
 "1" + h((x - k)/(1 - k))   if x > k
 ```
-this works for all k that 0 < k < 1
+this works for all k that 0 < k < 1 but some x **never terminate**. Consider to add a "Maxlen" handler
 
 **This should be defined as a iterative function, not recursive due to callstack limit**
 
@@ -164,7 +168,7 @@ Bound ordinal : e0
 We define the inverse of g as follows:
 
 ```
-for |[α;β]| > 0 and 0 ≤ x < 1
+for |[α;β]| > 0 and α ≤ x < β
 g⁻¹([α;β];x) =
 "0" + g⁻¹([α;f(α,β)];t)      if x < f(α,β)
 "1" + g⁻¹([f(α,β);β];t)      if x > f(α,β)
@@ -375,11 +379,11 @@ function gInv(alpha, beta, target) {
 /********************************************************
  * h(x) -- defined as iterative function, but can be defined as a recursive form but dangerous to use because of floating point error
  ********************************************************/
-
+const Maxlen = 1000 //avoid inf loops
 function h(x, k = 0.5) {
     let result = "";
 
-    while (x !== k) {
+    while (x !== k && result.length < Maxlen) {
         if (x < k) {
             result += "0";
             x = x / k;
@@ -603,11 +607,11 @@ class A {
 
         return "1" + A.gInv(split, beta, target);
     }
-
+	static Maxlen = 100
     static h(x, k = 0.5) {
         let result = "";
 
-        while (x !== k) {
+        while (x !== k && result.length < Maxlen) {
             if (x < k) {
                 result += "0";
                 x = x / k;
@@ -707,11 +711,11 @@ class B {
         if (c < 0) return "0" + B.gInv(alpha, split, target);
         return "1" + B.gInv(split, beta, target);
     }
-
+	static Maxlen = 100
     static h(x, k = 0.5) {
         let result = "";
 
-        while (x !== k) {
+        while (x !== k && result.length < Maxlen) {
             if (x < k) {
                 result += "0";
                 x = x / k;
