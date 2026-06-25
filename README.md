@@ -385,11 +385,10 @@ function gInv(alpha, beta, target) {
 /********************************************************
  * h(x) -- defined as iterative function, but can be defined as a recursive form but dangerous to use because of floating point error
  ********************************************************/
-const Maxlen = 1000 //avoid inf loops
-function h(x, k = 0.5) {
+function h(x, k = 0.5, Maxlen = 100 , eps = 1e-10) {
     let result = "";
 
-    while (x !== k && result.length < Maxlen) {
+    while (result.length < Maxlen && Math.abs(x - k) > eps) {
         if (x < k) {
             result += "0";
             x = x / k;
@@ -447,6 +446,7 @@ function fsRInv(alpha, beta, k = 0.5) {
     return Math.log(1 - x) /
            Math.log(1 - k);
 }
+
 ```
 
 ## Global Ordinal Conversion Implemetation
@@ -457,9 +457,8 @@ Conversion Between Ordinal System A and B
 Defintion : https://github.com/RNGDelak/ord-limbms/blob/main/README.md (in the extends this idea section)
 Assuming that Lim(A) < Lim(B)
 */
-//for this time, i preseve the recursive definition for functions except h
-// System A for this example : CNF
-class A {
+
+class CNF {
     static asp(str) {
         if (!str) return ["", ""];
         let depth = 0;
@@ -524,7 +523,7 @@ class A {
     }
 
     static fs(a, n = "") {
-        if (typeof n === "number") n = this.to_str(n+1);
+        if (typeof n === "number") n = this.to_str(n + 1);
 
         if (!a) return "";
 
@@ -585,40 +584,49 @@ class A {
     }
 
     static g(alpha, beta, s) {
-        if (this.isSuccessor(beta)) return alpha;
+        while (true) {
+            if (this.isSuccessor(beta)) return alpha;
 
-        const split = this.f(alpha, beta);
+            const split = this.f(alpha, beta);
 
-        if (s === "") return split;
+            if (s === "") return split;
 
-        const bit = s[0];
-        const rest = s.slice(1);
+            const bit = s[0];
+            s = s.slice(1);
 
-        if (bit === "0")
-            return this.g(alpha, split, rest);
-
-        return this.g(split, beta, rest);
+            if (bit === "0") {
+                beta = split;
+            } else {
+                alpha = split;
+            }
+        }
     }
 
     static gInv(alpha, beta, target) {
-        if (this.isSuccessor(beta)) return "";
+        let result = "";
 
-        const split = this.f(alpha, beta);
-        const c = this.cmp(target, split);
+        while (!this.isSuccessor(beta)) {
+            const split = this.f(alpha, beta);
+            const c = this.cmp(target, split);
 
-        if (c === 0) return "";
+            if (c === 0) break;
 
-        if (c < 0)
-            return "0" + this.gInv(alpha, split, target);
+            if (c < 0) {
+                result += "0";
+                beta = split;
+            } else {
+                result += "1";
+                alpha = split;
+            }
+        }
 
-        return "1" + this.gInv(split, beta, target);
+        return result;
     }
 
-    static Maxlen = 1000
-	static h(x, k = 0.5) {
-    	let result = "";
+    static h(x, k = 0.5 , maxlen = 100, eps = 1e-10) {
+        let result = "";
 
-   	 	while (x !== k && result.length < this.Maxlen) {
+        while (Math.abs(x - k) > eps && result.length < maxlen) {
             if (x < k) {
                 result += "0";
                 x = x / k;
@@ -632,53 +640,54 @@ class A {
     }
 
     static hInv(s, k = 0.5) {
-        if (s === "") return k;
+        let x = k;
 
-        const bit = s[0];
-        const rest = s.slice(1);
+        for (let i = s.length - 1; i >= 0; i--) {
+            if (s[i] === "0") {
+                x = k * x;
+            } else {
+                x = k + (1 - k) * x;
+            }
+        }
 
-        if (bit === "0")
-            return k * this.hInv(rest, k);
-
-        return k + (1 - k) * this.hInv(rest, k);
+        return x;
     }
 }
 
-// System B for this example : LPrSS
-class B {
+class LPrSS {
 
     static cmp(a, b) {
-    if (a == "Limit" && b == "Limit") return 0;
-    if (a == "Limit" && b != "Limit") return 1;
-    if (a != "Limit" && b == "Limit") return -1;
+        if (a == "Limit" && b == "Limit") return 0;
+        if (a == "Limit" && b != "Limit") return 1;
+        if (a != "Limit" && b == "Limit") return -1;
 
 
-    for (let i = 0; i < Math.min(a.length, b.length); i++) {
-        if (a[i] < b[i]) return -1;
-        if (a[i] > b[i]) return 1;
-    }
+        for (let i = 0; i < Math.min(a.length, b.length); i++) {
+            if (a[i] < b[i]) return -1;
+            if (a[i] > b[i]) return 1;
+        }
 
-    if (a.length < b.length) return -1;
-    if (a.length > b.length) return 1;
-    return 0;
+        if (a.length < b.length) return -1;
+        if (a.length > b.length) return 1;
+        return 0;
     }
 
     static fs(a, n) {
-    if (a == "Limit") return [0,n+1]
-	let out = [...a];
-	let cutNode = out.pop();
-	let root = out.length - 1;
-	while (out[root] >= cutNode && root > 0) root--;
-	let increment = cutNode - out[root] - 1;
-	let badPart = out.slice(root);
-	for (let i = 1; i < n; i++) {
-		out = out.concat(badPart.map(v => v + increment * i));
-	}
-	return out;
+        if (a == "Limit") return [0, n + 1]
+        let out = [...a];
+        let cutNode = out.pop();
+        let root = out.length - 1;
+        while (out[root] >= cutNode && root > 0) root--;
+        let increment = cutNode - out[root] - 1;
+        let badPart = out.slice(root);
+        for (let i = 1; i < n; i++) {
+            out = out.concat(badPart.map(v => v + increment * i));
+        }
+        return out;
     }
 
     static isSuccessor(a) {
-	return a !== "Limit" && (a.length === 0 || a.at(-1) === 0);
+        return a !== "Limit" && (a.length === 0 || a.at(-1) === 0);
     }
 
     static ZERO = [];
@@ -701,29 +710,49 @@ class B {
 
 
     static g(alpha, beta, s) {
-        if (this.isSuccessor(beta)) return alpha;
-        const split = this.f(alpha, beta);
-        if (s === "") return split;
-        const bit = s[0];
-        const rest = s.slice(1);
-        if (bit === "0") return this.g(alpha, split, rest);
-        return this.g(split, beta, rest);
+        while (true) {
+            if (this.isSuccessor(beta)) return alpha;
+
+            const split = this.f(alpha, beta);
+
+            if (s === "") return split;
+
+            const bit = s[0];
+            s = s.slice(1);
+
+            if (bit === "0") {
+                beta = split;
+            } else {
+                alpha = split;
+            }
+        }
     }
 
     static gInv(alpha, beta, target) {
-        if (this.isSuccessor(beta)) return "";
-        const split = this.f(alpha, beta);
-        const c = this.cmp(target, split);
-        if (c === 0) return "";
-        if (c < 0) return "0" + this.gInv(alpha, split, target);
-        return "1" + this.gInv(split, beta, target);
+        let result = "";
+
+        while (!this.isSuccessor(beta)) {
+            const split = this.f(alpha, beta);
+            const c = this.cmp(target, split);
+
+            if (c === 0) break;
+
+            if (c < 0) {
+                result += "0";
+                beta = split;
+            } else {
+                result += "1";
+                alpha = split;
+            }
+        }
+
+        return result;
     }
 
-    static Maxlen = 1000
-	static h(x, k = 0.5) {
-    	let result = "";
+    static h(x, k = 0.5, maxlen = 100, eps = 1e-10) {
+        let result = "";
 
-   	 	while (x !== k && result.length < this.Maxlen) {
+        while (Math.abs(x - k) > eps && result.length < maxlen) {
             if (x < k) {
                 result += "0";
                 x = x / k;
@@ -737,28 +766,30 @@ class B {
     }
 
     static hInv(s, k = 0.5) {
-        if (s === "") return k;
-        const bit = s[0];
-        const rest = s.slice(1);
-        if (bit === "0") return k * this.hInv(rest, k);
-        return k + (1 - k) * this.hInv(rest, k);
+        let x = k;
+
+        for (let i = s.length - 1; i >= 0; i--) {
+            if (s[i] === "0") {
+                x = k * x;
+            } else {
+                x = k + (1 - k) * x;
+            }
+        }
+
+        return x;
     }
 }
 
-let LimAinB = [0,2] // Lim(CNF) is 0,2 in LPrSS
-/*
-Special case : if lim(A) = Lim(B) then LimAinB = "Limit"
-*/
+let Lim_CNF_in_LPrSS = [0, 2] // Lim(CNF) is 0,2 in LPrSS
 
-function ConvA(ord) {
-    return B.g(B.ZERO,LimAinB,A.gInv(A.ZERO,"Limit",ord))
-    // Inside intervals [B.ZERO,LimAinB] , the adress of that ordinal in A is preserved
+function Conv_CNF(ord) {
+    return LPrSS.g(LPrSS.ZERO, Lim_CNF_in_LPrSS, CNF.gInv(CNF.ZERO, "Limit", ord))
 }
 
-function ConvB(ord) {
-    return A.g(A.ZERO,"Limit",B.gInv(B.ZERO, LimAinB, ord));
-    // Inside intervals [B.ZERO,LimAinB] , the adress of that ordinal in B is preserved
+function Conv_LPrSS(ord) {
+    return CNF.g(CNF.ZERO, "Limit", LPrSS.gInv(LPrSS.ZERO, Lim_CNF_in_LPrSS, ord));
 }
+
 ```
 
 
