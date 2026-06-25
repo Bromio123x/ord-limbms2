@@ -267,7 +267,7 @@ for aspect ratio 0 < k < 1
 /********************************************************
  * REQUIRED GLOBAL FUNCTIONS
  ********************************************************/
-
+//for this time, i preseve the recursive definition for functions except h
 //This function are ordinal sysrem dependences
 //System for the example : LPrSS
 
@@ -457,7 +457,7 @@ Conversion Between Ordinal System A and B
 Defintion : https://github.com/RNGDelak/ord-limbms/blob/main/README.md (in the extends this idea section)
 Assuming that Lim(A) < Lim(B)
 */
-
+//for this time, i preseve the recursive definition for functions except h
 // System A for this example : CNF
 class A {
     static asp(str) {
