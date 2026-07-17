@@ -40,7 +40,7 @@ function lngi(x) {
     x = new Decimal(x)
 
     // boundary conditions
-    if (x.gt(1)) return ["Lim(BMS)",new Decimal(0)]
+    if (x.gt(1)) return ["(1,,1)",new Decimal(0)]
     if (x.lt(0)) return ["0",new Decimal(0)]
 
     x = unmap(x)
